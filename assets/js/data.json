@@ -1,0 +1,10 @@
+{
+    "nombre": "Rick Sanchez",
+    "especie": "Humano",
+    "estatus": "Vivo",
+    "episodio": ["So1EO1", "So2EO2", "So3EO3"],
+    "ubicacion": {
+        "nombre": "Tierra",
+        "tipo": "Planeta"
+    }
+}
