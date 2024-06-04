@@ -1,32 +1,29 @@
-const url = "https://api.imgflip.com/get_memes";
-
-async function procesarPromesa(url, targetId) { // Pass targetId as an argument
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-
-    const filteredMemes = data.data.memes.filter(meme => meme.id !== targetId); // Filter memes excluding targetId
-
-    return filteredMemes;
-  } catch (error) {
-    console.error("Error: ", error);
-    return [];
-  }
+const url = "https://rickandmortyapi.com/api/character" // obtengo la api
+ 
+// con este codigo pueedo contectarme con un .json (el codigo es reutilizable)
+// siempre y cuando este deifiniendo una url anteriormente (procesarPromesa(url (constante con una url));)
+const procesarPromesa = async (link) =>{
+    try {    
+        const respuesta = await fetch(link)
+        const info = await respuesta.json()
+        console.log(info);
+        return info
+    } catch (error) {
+        console.log("hubo un error: " + error);
+    }
 }
 
-const container = document.getElementById('container');
+const container = document.getElementById("container");
 
-// Specify the target ID you want to stop before
-const targetId = 87743020;
-
-procesarPromesa(url, targetId) // Pass targetId during function call
-  .then((data) => {
-    data.forEach((elemento) => {
-      container.innerHTML += `
-        <div class="card">
-            <img src="${elemento.url}" alt="${elemento.name}">
-            <h1>nombre: ${elemento.name}</h1>
-        </div>
-      `;
-    });
-  });
+procesarPromesa(url)
+    .then((info) =>{
+        info.results.forEach((elemento) => {
+            container.innerHTML += `
+            <div class="card">
+                <img src="${elemento.image}" alt="">
+                <h2>${elemento.name}</h2>
+                <p>${elemento.species}</p>
+            </div>
+            `
+        })
+    })
